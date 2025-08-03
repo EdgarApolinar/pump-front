@@ -3,17 +3,27 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fontsource/oxanium": "^5.2.5",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^13.5.0",
+    "antd": "^5.25.1",
+    "axios": "^1.9.0",
+    "bootstrap": "^5.3.6",
+    "md5": "^2.3.0",
     "react": "^19.1.0",
+    "react-device-detect": "^2.2.3",
     "react-dom": "^19.1.0",
+    "react-icons": "^5.5.0",
+    "react-router-dom": "^7.5.3",
     "react-scripts": "5.0.1",
+    "universal-cookie": "^8.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start:dev": "react-scripts start",
+    "start:staging": "set HTTPS=true&&set HOST=127.0.0.1&&react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -35,5 +45,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "dotenv-cli": "^8.0.0"
   }
 }

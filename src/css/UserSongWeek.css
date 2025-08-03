@@ -1,0 +1,69 @@
+.custom-oxanium-label-blue .ant-form-item-label > label {
+  font-family: 'Oxanium', cursive;
+  font-weight: 800;
+  font-size: 1.063em;
+  background: transparent;
+  //background-color: aliceblue;
+   //-webkit-text-stroke: 1px white; /* Borde blanco */
+  text-shadow: 
+    0 0 2px white, /* Refuerzo del borde */
+    2px 2px 4px rgba(0,0,0,0.1); /* Sombra opcional para profundidad */
+  color: #1890ff !important; /* Color azul */
+  padding: 0;
+}
+
+.custom-oxanium-label-green .ant-form-item-label > label {
+  font-family: 'Oxanium', cursive;
+  font-weight: 800;
+  font-size: 1.063em;
+  background: transparent;
+  //background-color: aliceblue;
+   //-webkit-text-stroke: 1px white; /* Borde blanco */
+  text-shadow: 
+    0 0 2px white, /* Refuerzo del borde */
+    2px 2px 4px rgba(0,0,0,0.1); /* Sombra opcional para profundidad */
+  color:#32CD32 !important; /* Color azul */
+  padding: 0;
+}
+
+.custom-oxanium-label-yellow .ant-form-item-label > label {
+  font-family: 'Oxanium', cursive;
+  font-weight: 800;
+  font-size: 1.063em;
+  background: transparent;
+  //background-color: white;
+   //-webkit-text-stroke: 1px white; /* Borde blanco */
+  text-shadow: 
+    0 0 2px white, /* Refuerzo del borde */
+    2px 2px 4px rgba(0,0,0,0.1); /* Sombra opcional para profundidad */
+  color:#fbff07 !important; /* Color azul */
+  padding: 0;
+}
+
+.custom-oxanium-label-red .ant-form-item-label > label {
+  font-family: 'Oxanium', cursive;
+  font-weight: 800;
+  font-size: 1.063em;
+  background: transparent;
+  //background-color: white;
+   //-webkit-text-stroke: 1px white; /* Borde blanco */
+  text-shadow: 
+    0 0 2px white, /* Refuerzo del borde */
+    2px 2px 4px rgba(0,0,0,0.1); /* Sombra opcional para profundidad */
+  color:#cc00ff !important; /* Color azul */
+  padding: 0;
+}
+
+.custom-oxanium-label-red-2 .ant-form-item-label > label {
+  font-family: 'Oxanium', cursive;
+  font-weight: 800;
+  font-size: 1.063em;
+  background: transparent;
+  //background-color: white;
+   //-webkit-text-stroke: 1px white; /* Borde blanco */
+  text-shadow: 
+    0 0 2px white, /* Refuerzo del borde */
+    2px 2px 4px rgba(0,0,0,0.1); /* Sombra opcional para profundidad */
+  color:#f00 !important; /* Color azul */
+  padding: 0;
+}

@@ -1,0 +1,106 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Evitar repaints innecesarios */
+.table-image {
+  display: block;
+  width: 50px;
+  height: 100%px;
+  object-fit: contain;
+  background-color: #f5f5f5;
+  border: 1px solid #eee;
+  margin: 0 auto;
+}
+
+.image-container {
+  width: 50px;
+  height: 50px;
+}
+
+.image-placeholder {
+  width: 100%;
+  height: 100%;
+  background-color: #f5f5f5;
+  border: 1px dashed #ddd;
+}
+
+/* Evitar layout shifts */
+.table-image {
+  aspect-ratio: 1;
+}
+
+/* En tu CSS */
+.hero-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+}
+
+.hero-icon {
+  display: inline-block;
+  width: 170px;
+  height: 170px;
+  margin-right: 10px;
+  background-image: url('/public/assets/cl_01.jpg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.hero-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-icon-home {
+  display: inline-block;
+  width: 100%;
+  height: 400px;
+  margin-right: 10px;
+  background-image: url('/public/assets/cl_01.jpg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.hero-section {
+  color: black;
+}

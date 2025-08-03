@@ -1,0 +1,223 @@
+.header {
+    background-color: #282c34;
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .navigation a {
+    color: white;
+    margin-left: 1.5rem;
+    text-decoration: none;
+  }
+  
+  .navigation a:hover {
+    text-decoration: underline;
+  }
+
+  .logo-image {
+    max-height: 70%; /* El logo ocupará máximo 70% de la altura del header */
+    width: auto; /* Mantiene la proporción */
+    max-width: 200px; /* Ancho máximo opcional */
+  }
+
+  /* src/components/Header/Header.css */
+.header {
+  background-color: #2c3e50;
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 1000;
+}
+
+.logo a {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.nav-list {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 1.5rem;
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-link, .nav-link button {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.nav-link:hover, .nav-link button:hover {
+  opacity: 0.8;
+}
+
+.submenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  list-style: none;
+  padding: 0.5rem 0;
+  margin: 0;
+  min-width: 200px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  z-index: 100;
+}
+
+.submenu.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.submenu-item {
+  padding: 0;
+}
+
+.submenu-link {
+  color: #2c3e50;
+  text-decoration: none;
+  display: block;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.2s;
+}
+
+.submenu-link:hover {
+  background-color: #f5f5f5;
+}
+
+/* Versión móvil */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    padding: 1rem;
+  }
+  
+  .nav-list {
+    flex-direction: column;
+    width: 100%;
+    gap: 0;
+  }
+  
+  .nav-item {
+    width: 100%;
+  }
+  
+  .nav-link, .nav-link button {
+    padding: 0.8rem 0;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .submenu {
+    position: static;
+    box-shadow: none;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    background-color: #34495e;
+    width: 100%;
+  }
+  
+  .submenu.open {
+    max-height: 500px; /* Ajusta según necesidad */
+    opacity: 1;
+    transform: none;
+  }
+  
+  .submenu-link {
+    color: white;
+    padding-left: 1.5rem;
+  }
+}
+
+/* Estilos del botón hamburguesa (oculto por defecto) */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 2rem;
+  height: 2rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 10px;
+}
+
+.hamburger span {
+  width: 100%;
+  height: 2px;
+  background: white;
+  transition: all 0.3s;
+}
+
+/* Estilos para móvil */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+    z-index: 100;
+  }
+
+  .nav-list {
+    position: fixed;
+    //top: 25%;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #333;
+    flex-direction: column;
+    //justify-content: center;
+    align-items: center;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 99;
+  }
+
+  .nav-list.active {
+    transform: translateX(0);
+  }
+
+  /* Animación del botón hamburguesa a X */
+  .hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+  }
+}
