@@ -227,13 +227,6 @@ const UserSongWeek = () =>{
   const columns = [
     { title: 'Nickname', dataIndex: 'name', key: 'name' },
     { title: 'Completo', dataIndex: 'isComplete', key: 'isComplete' },
-    // { title: 'Address', dataIndex: 'address', key: 'address' },
-    // {
-    //   title: 'Action',
-    //   dataIndex: '',
-    //   key: 'x',
-    //   render: () => <a>Delete</a>,
-    // },
   ];
   const [dataTable, setDataTable] = useState([]);
   const [viewTable, setViewTable] = useState(false);
@@ -291,16 +284,16 @@ const UserSongWeek = () =>{
     <MainLayout>
       {contextHolder}
       <section className="hero-section">
-          <h1>Administracion de Usuarios semanas</h1>
+          <h1>Administracion de usuarios a semanas </h1>
       </section>
       <section>
-        <Card title="Búsqueda por semana" style={{ margin: '20px' }}>
+        <Card title="Búsqueda por sepa" style={{ margin: '20px' }}>
           <Spin spinning={loading}>
             <Row gutter={16}>
               <Col span={6}>
                 <Select
                   style={{ width: '100%' }}
-                  placeholder="Seleccione una opción principal"
+                  placeholder="Seleccione una opción"
                   onChange={(value) => setSelectedPrimary(value)}
                   value={selectedPrimary}
                   // disabled={!selectedLeague}
@@ -308,7 +301,7 @@ const UserSongWeek = () =>{
                 >
                     {primaryOptions.map(option => (
                     <Option key={option.id} value={option.id}>
-                        Semana {option.id}
+                        Sepa {option.id}
                     </Option>
                     ))}
                 </Select>
@@ -322,7 +315,7 @@ const UserSongWeek = () =>{
                   icon={<SearchOutlined />}
                   block
                   >
-                  Buscar
+                  Ver Usuarios
                   </Button>
               </Col>
 
@@ -379,7 +372,7 @@ const UserSongWeek = () =>{
           open={isModalOpen} 
           onOk={handleOk} 
           onCancel={handleCancel}
-          okText = 'Registrar'
+          okText = 'Guardar'
           cancelText = 'Salir'
           confirmLoading={loadingAdd}
         >
@@ -431,7 +424,10 @@ const UserSongWeek = () =>{
                           rules={[{ required: true, message: 'Seleccione una opción' }]}
                         >
                           <Select 
-                            placeholder="Seleccione una opción" 
+                            showSearch
+                            filterOption={true}
+                            placeholder="Seleccione una opción"
+                            optionFilterProp="children"
                             style={{ width: 200 }}
                           >
                             {getAvailableOptions(index).map(opcion => (
@@ -459,7 +455,7 @@ const UserSongWeek = () =>{
                         icon={<PlusOutlined />}
                         style={{ marginTop: '16px' }}
                       >
-                        Agregar Elemento
+                        Agregar Usuario
                       </Button>
                     </Form.Item>
                   </>

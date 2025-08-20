@@ -197,13 +197,13 @@ const WeekSongs = () =>{
         </h1>
       </section>
       <section>
-        <Card title="Búsqueda por semana" style={{ margin: '20px' }}>
+        <Card title="Búsqueda canciones por Sepa" style={{ margin: '20px' }}>
         <Spin spinning={loading}>
           <Row gutter={16}>
             <Col span={8}>
               <Select
                 style={{ width: '100%' }}
-                placeholder="Seleccione una opción principal"
+                placeholder="Seleccione una opción"
                 onChange={(value) => setSelectedPrimary(value)}
                 value={selectedPrimary}
                 // disabled={!selectedLeague}
@@ -211,7 +211,7 @@ const WeekSongs = () =>{
               >
                 {primaryOptions.map(option => (
                   <Option key={option.id} value={option.id}>
-                    Semana {option.id}
+                    Sepa {option.id}
                   </Option>
                 ))}
               </Select>
@@ -225,7 +225,7 @@ const WeekSongs = () =>{
                   // disabled={!selectedPrimary}
                   //block
               >
-                Agregar semana
+                Agregar Sepa
               </Button>
             </Col>
             <Col span={3}>
@@ -236,7 +236,7 @@ const WeekSongs = () =>{
                   // disabled={!selectedPrimary}
                   //block
               >
-                Editar semana
+                Editar Sepa
               </Button>
             </Col>
           </Row>
@@ -328,11 +328,11 @@ const WeekSongs = () =>{
       </div>
 
       <Modal 
-        title="Agregar semana y canciones" 
+        title="Agregar canciones a semana" 
         open={isModalOpen} 
         onOk={handleOk} 
         onCancel={handleCancel}
-        okText = 'Registrar'
+        okText = 'Guardar'
         cancelText = 'Salir'
         confirmLoading={loadingAdd}>
         
@@ -349,7 +349,7 @@ const WeekSongs = () =>{
         >
         {/* Input numérico */}
         <Form.Item
-          label="Semana"
+          label="Sepa"
           name="week"
           rules={[{ required: true, message: 'Por favor ingrese semana' }]}
         >

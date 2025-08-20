@@ -32,6 +32,9 @@ const DataTable = ({
       setError(null);
       
       try {
+
+        //console.info(fetchData)
+
         const params = {
           page: currentPage,
           pageSize: itemsPerPage,

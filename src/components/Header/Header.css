@@ -74,6 +74,8 @@
 
 .nav-link:hover, .nav-link button:hover {
   opacity: 0.8;
+  color: blue;
+  transform: scale(1.2);
 }
 
 .submenu {
@@ -220,4 +222,10 @@
   .hamburger.active span:nth-child(3) {
     transform: rotate(-45deg) translate(7px, -6px);
   }
+}
+
+.active {
+  color: blue;
+  background: radial-gradient(circle, black, transparent);
+  border-radius: 58px 0px 38px 37px;
 }

@@ -4,7 +4,7 @@ import Login from '../Login';
 import Button from '../Button';
 import { useNavigate } from 'react-router-dom';
 import { isAuthenticated, removeAuthToken } from '../../utils/auth';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const Header = () => {
 
@@ -134,17 +134,17 @@ const Header = () => {
           {currentMenu.map((item, index) => (
             <li 
               key={index} 
-              className={`nav-item ${item.submenu ? 'has-submenu' : ''}`}
+              className={`nav-item ${item.submenu ? 'has-submenu' : ''} `}
               onMouseEnter={() => item.submenu && toggleSubmenu(item.name)}
               onMouseLeave={() => item.submenu && toggleSubmenu(null)}
             >
               {item.path ? (
-                <Link to={item.path} className="nav-link">
+                <NavLink to={item.path} className={`nav-link ${isOpen ? 'active' : ''}` }  >
                   {item.name}
-                </Link>
+                </NavLink>
               ) : (
                 <button 
-                  className="nav-link"
+                  className={`nav-link `}
                   onClick={() => toggleSubmenu(item.name)}
                   aria-expanded={openSubmenu === item.name}
                   aria-haspopup="true"
@@ -160,13 +160,13 @@ const Header = () => {
                 >
                   {item.submenu.map((subItem, subIndex) => (
                     <li key={subIndex} className="submenu-item">
-                      <Link 
+                      <NavLink 
                         to={subItem.path} 
                         className="submenu-link"
                         onClick={() => setOpenSubmenu(null)}
                       >
                         {subItem.name}
-                      </Link>
+                      </NavLink>
                     </li>
                   ))}
                 </ul>

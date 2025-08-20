@@ -19,6 +19,7 @@ const ClandestinaMain = () => {
     const [data, setData] = useState([]);
     const [searchTriggered, setSearchTriggered] = useState(false);
     const [searchDetailTriggered, setSearchDetailTriggered] = useState(false);
+    const [buttonSearch, setButtonSearch]= useState('Resultados')
 
     // Estados para los filtros
     //const [leagueOptions, setleagueOptions] = useState([]);
@@ -31,6 +32,13 @@ const ClandestinaMain = () => {
     const [imageName, setImageName] = useState('default');
     const [imageNameSong, setImageNameSong] = useState('default');
     
+    const SetClassPosition = ({row}) => {
+      return(
+        <h1 className={row.position == 1 ? 'firs-position': 
+            row.position == 2 ? 'second-position': row.position == 3 ? 'third-position' : ''}>{row.name}</h1>
+      )
+    }
+
     const ImageCell = React.memo(({ position }) => {
 
         const shouldShowImage = useMemo(() => {
@@ -94,9 +102,9 @@ const ClandestinaMain = () => {
       const starCount = Math.max(0, Number(count) || 0);
   
       return (
-        <div style={{ display: 'flex', flexWrap: 'wrap'}}>
+        <div style={{ display: 'flex', flexWrap: 'wrap'}} >
           {Array.from({ length: starCount }).map((_, index) => (
-            <span key={index} style={{ color: 'gold', marginRight: '2px' }}>★</span>
+            <span key={index} className='imagen-start-per' >★</span>
           ))}
         </div>
       );
@@ -113,7 +121,7 @@ const ClandestinaMain = () => {
             key: 'name', 
             title: 'Apodo', 
           //sortable: true,
-          //render: (value, row) => `${row.firstName} ${row.lastName}`
+          render: (value, row) =>  row.position > 3 ? value : <SetClassPosition row={row} />
         },
         { 
           key: 'points', 
@@ -126,7 +134,7 @@ const ClandestinaMain = () => {
         },
         { 
           key: 'pgs', 
-          title: 'PG',
+          title: 'Perfects Game',
           render: (pgs) => <DynamicStars count={pgs} />      
         }
       ];
@@ -180,6 +188,7 @@ useEffect(() => {
         setSecondaryOptions([]); // Resetear opciones secundarias
         setSelectedSecondary(null); // Resetear selección secundaria
         setTableDetailLoading(true); // activar la nueva busqueda
+        setButtonSearch('Generales'); //
         try {
           // Simular llamada API con el parámetro del primer select
           const response = await leagueService.songWeek({week:selectedPrimary})
@@ -201,7 +210,8 @@ useEffect(() => {
   useEffect(() => {
     setShowTableDetails(false);
     setSearchDetailTriggered(false);
-    setImageName(null)
+    setImageName(null);
+    setButtonSearch('Por canción')
   }, [selectedSecondary]);
 
      // Function to fetch data from API
@@ -213,11 +223,13 @@ useEffect(() => {
     setTableLoading(true);
 
     try{
-      const response = await leagueService.ClandestinaMain({"week": selectedPrimary, league : null});
+      params.week = selectedPrimary;
+      params. league =  null;
+      const response = await leagueService.ClandestinaMain(params);
 
       const res = {
         data: response.items,
-        total: response.items.length
+        total: response.totalCounts
       };
       return res;
     } catch (error) {
@@ -267,6 +279,7 @@ useEffect(() => {
     setShowTableDetails(false);
     setSearchTriggered(false);
     setSearchDetailTriggered(false);
+    setButtonSearch('Resultados')
   }
 
 
@@ -355,7 +368,9 @@ const fetchUserDataSongDetails = useCallback( async (params) => {
 
   try
   {
-    const response = await leagueService.songWeekDetail({"weekId": selectedPrimary, "songLevelId": selectedSecondary });
+    params.weekId = selectedPrimary;
+    params.songLevelId = selectedSecondary;
+    const response = await leagueService.songWeekDetail(params);
 
       const res = {
         data: response.items,
@@ -388,13 +403,13 @@ const fetchUserDataSongDetails = useCallback( async (params) => {
         </h1>
       </section>
       <section>
-         <Card title="Búsqueda por semana" style={{ margin: '20px' }}>
+         <Card title="Resultados" style={{ margin: '20px' }}>
           <Spin spinning={loading}>
             <Row gutter={16}>
               <Col span={6}>
                 <Select
                   style={{ width: '100%' }}
-                  placeholder="Seleccione una opción principal"
+                  placeholder="Seleccione semana"
                   onChange={(value) => setSelectedPrimary(value)}
                   value={selectedPrimary}
                   // disabled={!selectedLeague}
@@ -402,7 +417,7 @@ const fetchUserDataSongDetails = useCallback( async (params) => {
                 >
                   {primaryOptions.map(option => (
                     <Option key={option.id} value={option.id}>
-                      Semana {option.id}
+                      Sepa {option.id}
                     </Option>
                   ))}
                 </Select>
@@ -411,7 +426,7 @@ const fetchUserDataSongDetails = useCallback( async (params) => {
               <Col span={9}>
                 <Select
                   style={{ width: '100%' }}
-                  placeholder="Seleccione una opción secundaria"
+                  placeholder="Seleccione canción"
                   onChange={(value) => setSelectedSecondary(value)}
                   value={selectedSecondary}
                   disabled={!selectedPrimary}
@@ -433,17 +448,19 @@ const fetchUserDataSongDetails = useCallback( async (params) => {
                   icon={<SearchOutlined />}
                   block
                 >
-                  Buscar
+                  {buttonSearch}
                 </Button>
               </Col>
 
               <Col span={3}>
                 <Button 
+                  variant='solid'
+                  color="cyan"
                   onClick={handleClear}
                   disabled={!selectedPrimary}
                   block
                 >
-                  Limpiar
+                  Reiniciar busqueda
                 </Button>
               </Col>
             </Row>
@@ -460,10 +477,10 @@ const fetchUserDataSongDetails = useCallback( async (params) => {
                 fetchData={fetchUserData}
                 onRowClick={handleRowClick}
                 initialSortField="name"
-                itemsPerPage={15}
+                itemsPerPage={10}
                 loading={tableLoading}
                 // Añadir esta prop para prevenir carga automática
-                manualPagination={true}
+                //manualPagination={true}
             />
         </div>
       </section>
@@ -492,9 +509,9 @@ const fetchUserDataSongDetails = useCallback( async (params) => {
               fetchData={fetchUserDataSongDetails}
               onRowClick={handleRowClick}
               initialSortField="name"
-              itemsPerPage={15}
+              itemsPerPage={100}
               loading={tableDetailLoading}
-              manualPagination={true}
+              //manualPagination={true}
             />
           </div>
         </section>

@@ -13,3 +13,7 @@ export const setAuthToken = (token) => {
   export const isAuthenticated = () => {
     return !!getAuthToken();
   };
+
+  export const isAdmin = () => {
+    
+  }
